@@ -1,0 +1,31 @@
+﻿<Window x:Class="iPOPreg.Panel_control"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iPOPreg"
+        mc:Ignorable="d"
+        Title="Panel de control" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
+    <Border Background="#FF094476" CornerRadius="15" MouseLeftButtonDown="Panel_PControl_MouseLeftButtonDown">
+        <Grid x:Name="Panel_PControl">
+            <Button x:Name="Logout_Panel" Content="" HorizontalAlignment="Left" Height="51" Margin="0,98,0,0" VerticalAlignment="Top" Width="53" BorderBrush="#FF6EDACB" ToolTip="Cerrar Sesion" Click="Logout_Panel_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="systemlogout_103399.ico"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="AddUser_Panel" Content="" HorizontalAlignment="Left" Height="51" Margin="0,149,0,0" VerticalAlignment="Top" Width="53" BorderBrush="#FF6EDACB" ToolTip="Agregar Nuevo Usuario">
+                <Button.Background>
+                    <ImageBrush ImageSource="Accept-User.ico"/>
+                </Button.Background>
+            </Button>
+            <Button Content="Registro de &#xD;&#xA;Equipos" HorizontalAlignment="Left" Height="48" Margin="684,32,0,0" VerticalAlignment="Top" Width="116" FontFamily="Nirmala UI" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA"/>
+            <Label x:Name="Titulo_Panel" Content="PANEL DE CONSULTAS" HorizontalAlignment="Left" Height="42" Margin="50,26,0,0" VerticalAlignment="Top" Width="553" FontSize="20" Foreground="White" FontFamily="Microsoft YaHei UI"/>
+            <Button Content="Equipos &#xD;&#xA;Prestados" HorizontalAlignment="Left" Height="48" Margin="576,32,0,0" VerticalAlignment="Top" Width="108" FontFamily="Tahoma" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA"/>
+            <Button Content="Entrada de &#xD;&#xA;Equipos" HorizontalAlignment="Left" Height="48" Margin="360,31,0,0" VerticalAlignment="Top" Width="108" FontFamily="Tahoma" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA"/>
+            <Button Content="Salida de &#xD;&#xA;Equipos" HorizontalAlignment="Left" Height="48" Margin="468,32,0,0" VerticalAlignment="Top" Width="108" FontFamily="Tahoma" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA"/>
+            <DataGrid HorizontalAlignment="Left" Height="292" Margin="111,116,0,0" VerticalAlignment="Top" Width="651"/>
+
+        </Grid>
+    </Border>
+
+</Window>
