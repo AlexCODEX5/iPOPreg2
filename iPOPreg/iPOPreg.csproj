@@ -38,6 +38,9 @@
     <ApplicationIcon>database_theapplication_3365.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QrCode.Net.0.4.0.0\lib\net45\Gma.QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.17.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -59,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Registrar_qr.xaml.cs">
+      <DependentUpon>Registrar_qr.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Registro_equipo.xaml.cs">
       <DependentUpon>Registro_equipo.xaml</DependentUpon>
     </Compile>
@@ -76,6 +82,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Panel_control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Registrar_qr.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,6 +115,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -121,6 +132,9 @@
     <Resource Include="home.ico" />
     <Resource Include="Scr1.bmp" />
     <Resource Include="systemlogout_103399.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="kissclipart-scan-qr-code-icon-clipart-qr-code-computer-icons-b-b6538eff45964836.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
