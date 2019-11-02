@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Gma.QrCodeNet.Encoding;
+using Gma.QrCodeNet.Encoding.Windows.Render;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +10,10 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Drawing;
+using System.IO;
 
 namespace iPOPreg
 {
@@ -31,6 +34,11 @@ namespace iPOPreg
 
         private void Escanear_RegistroQR_Click(object sender, RoutedEventArgs e)
         {
+            QrEncoder qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
+            QrCode qrCode = new QrCode();
+            qrEncoder.TryEncode(CodigoQR_RegistroQR.Text,out qrCode);
+            GraphicsRenderer renderer = new GraphicsRenderer(new FixedCodeSize(400, QuietZoneModules.Zero),Brushes.Black,Brushes.White);
+            MemoryStream ms = new MemoryStream();
             CodigoQR_RegistroQR.Clear();
             CodigoQR_RegistroQR.Focus();
         }
