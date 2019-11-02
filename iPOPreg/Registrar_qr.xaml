@@ -3,14 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:local="clr-namespace:iPOPreg"
         mc:Ignorable="d"
-        Title="Registro Código QR" Height="323.197" Width="503.093" ResizeMode="NoResize">
+        Title="Registros Código QR" Height="361.435" Width="533.761" ResizeMode="NoResize" >
     <Grid x:Name="RegistroQR_Panel" Loaded="RegistroQR_Panel_Loaded">
-        <Button x:Name="Escanear_RegistroQR" Content="Escanear" HorizontalAlignment="Left" Height="20" Margin="351,98,0,0" VerticalAlignment="Top" Width="128" IsDefault="True" Click="Escanear_RegistroQR_Click"/>
+        <Button x:Name="Escanear_RegistroQR" Content="Escanear" HorizontalAlignment="Left" Height="20" Margin="351,86,0,0" VerticalAlignment="Top" Width="128" IsDefault="True" Click="Escanear_RegistroQR_Click"/>
         <TextBox x:Name="CodigoQR_RegistroQR" HorizontalAlignment="Left" Height="26" Margin="102,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="377" VerticalContentAlignment="Center"/>
         <Label Content="Código QR:" HorizontalAlignment="Left" Height="29" Margin="23,41,0,0" VerticalAlignment="Top" Width="213"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="172" Margin="65,98,0,0" VerticalAlignment="Top" Width="171"/>
+        <WindowsFormsHost x:Name="host" HorizontalAlignment="Left" Height="216" Margin="102,86,0,0" VerticalAlignment="Top" Width="216">
+
+        </WindowsFormsHost>
+        <Button Content="Generar" HorizontalAlignment="Left" Height="20" Margin="350,125,0,0" VerticalAlignment="Top" Width="129"/>
+        <Button Content="Guardar " HorizontalAlignment="Left" Height="20" Margin="350,164,0,0" VerticalAlignment="Top" Width="129"/>
 
     </Grid>
 </Window>

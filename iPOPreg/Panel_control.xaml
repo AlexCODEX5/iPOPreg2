@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:iPOPreg"
         mc:Ignorable="d"
         Title="Panel de control" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
-    <Border Background="#FF094476" CornerRadius="15" MouseLeftButtonDown="Panel_PControl_MouseLeftButtonDown">
+    <Border Background="#FF1476C9" CornerRadius="15" MouseLeftButtonDown="Panel_PControl_MouseLeftButtonDown">
         <Grid x:Name="Panel_PControl">
             <Button x:Name="Logout_Panel" Content="" HorizontalAlignment="Left" Height="51" Margin="0,98,0,0" VerticalAlignment="Top" Width="53" BorderBrush="#FF6EDACB" ToolTip="Cerrar Sesion" Click="Logout_Panel_Click">
                 <Button.Background>
@@ -24,12 +24,14 @@
             <Button Content="Entrada de &#xD;&#xA;Equipos" HorizontalAlignment="Left" Height="48" Margin="360,31,0,0" VerticalAlignment="Top" Width="108" FontFamily="Tahoma" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA"/>
             <Button Content="Salida de &#xD;&#xA;Equipos" HorizontalAlignment="Left" Height="48" Margin="468,32,0,0" VerticalAlignment="Top" Width="108" FontFamily="Tahoma" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA"/>
             <DataGrid HorizontalAlignment="Left" Height="292" Margin="111,116,0,0" VerticalAlignment="Top" Width="651"/>
-            <Button x:Name="InsertarQR_Panel" Content="" HorizontalAlignment="Left" Height="53" Margin="0,199,0,0" VerticalAlignment="Top" Width="53" BorderBrush="#FF6EDACB" ToolTip="Registrar Codigo QR">
+            <Label Content="" Width="53" Background="White" Margin="0,200,747,198"/>
+            <Button x:Name="InsertarQR_Panel" HorizontalAlignment="Left" Height="53" Margin="0,199,0,0" VerticalAlignment="Top" Width="53" BorderBrush="#FF6EDACB" ToolTip="Registrar Codigo QR" Click="InsertarQR_Panel_Click">
+
                 <Button.Background>
                     <ImageBrush ImageSource="kissclipart-scan-qr-code-icon-clipart-qr-code-computer-icons-b-b6538eff45964836.png"/>
                 </Button.Background>
-            </Button>
 
+            </Button>
         </Grid>
     </Border>
 

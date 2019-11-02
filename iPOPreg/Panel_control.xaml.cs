@@ -19,6 +19,7 @@ namespace iPOPreg
     /// </summary>
     public partial class Panel_control : Window
     {
+        
         public Panel_control()
         {
             InitializeComponent();
@@ -34,6 +35,15 @@ namespace iPOPreg
             MainWindow logout = new MainWindow();
             logout.Show();
             this.Close();
+        }
+
+        private void InsertarQR_Panel_Click(object sender, RoutedEventArgs e)
+        {
+            Registrar_qr registroQR = new Registrar_qr();
+                registroQR.Owner = this;
+                registroQR.Show();
+                registroQR.Topmost = true;
+
         }
     }
 }
