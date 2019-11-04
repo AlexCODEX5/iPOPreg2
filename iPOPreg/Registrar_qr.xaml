@@ -6,16 +6,18 @@
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:local="clr-namespace:iPOPreg"
         mc:Ignorable="d"
-        Title="Registros Código QR" Height="361.435" Width="533.761" ResizeMode="NoResize" >
+        Title="Registros Código QR" Height="428.465" Width="590.277" ResizeMode="NoResize" >
     <Grid x:Name="RegistroQR_Panel" Loaded="RegistroQR_Panel_Loaded">
-        <Button x:Name="Escanear_RegistroQR" Content="Escanear" HorizontalAlignment="Left" Height="20" Margin="351,86,0,0" VerticalAlignment="Top" Width="128" IsDefault="True" Click="Escanear_RegistroQR_Click"/>
-        <TextBox x:Name="CodigoQR_RegistroQR" HorizontalAlignment="Left" Height="26" Margin="102,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="377" VerticalContentAlignment="Center"/>
-        <Label Content="Código QR:" HorizontalAlignment="Left" Height="29" Margin="23,41,0,0" VerticalAlignment="Top" Width="213"/>
-        <WindowsFormsHost x:Name="host" HorizontalAlignment="Left" Height="216" Margin="102,86,0,0" VerticalAlignment="Top" Width="216">
-
+        <Button x:Name="Escanear_RegistroQR" Content="Escanear" HorizontalAlignment="Left" Height="20" Margin="415,91,0,0" VerticalAlignment="Top" Width="128" IsDefault="True" Click="Escanear_RegistroQR_Click"/>
+        <TextBox x:Name="CodigoQR_RegistroQR" HorizontalAlignment="Left" Height="26" Margin="102,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="441" VerticalContentAlignment="Center"/>
+        <Label Content="Código QR:" HorizontalAlignment="Left" Height="29" Margin="23,41,0,0" VerticalAlignment="Top" Width="79"/>
+        <WindowsFormsHost x:Name="host" HorizontalAlignment="Left" Height="287" Margin="102,86,0,0" VerticalAlignment="Top" Width="287">
+            <wf:Panel x:Name="QRresult_RegistroQR" Height="400" Width="400">
+                
+            </wf:Panel>
         </WindowsFormsHost>
-        <Button Content="Generar" HorizontalAlignment="Left" Height="20" Margin="350,125,0,0" VerticalAlignment="Top" Width="129"/>
-        <Button Content="Guardar " HorizontalAlignment="Left" Height="20" Margin="350,164,0,0" VerticalAlignment="Top" Width="129"/>
+        <Button x:Name="Generar_RegistrosQR" Content="Generar" HorizontalAlignment="Left" Height="20" Margin="414,130,0,0" VerticalAlignment="Top" Width="129" Click="Generar_RegistrosQR_Click"/>
+        <Button x:Name="Guardar_RegistrosQR" Content="Guardar " HorizontalAlignment="Left" Height="20" Margin="414,169,0,0" VerticalAlignment="Top" Width="129" IsEnabled="False" Click="Guardar_RegistrosQR_Click"/>
 
     </Grid>
 </Window>

@@ -19,6 +19,7 @@ using System.IO;
 using Size = System.Drawing.Size;
 using Point = System.Drawing.Point;
 using Panel = System.Windows.Forms.Panel;
+using Image = System.Drawing.Image;
 
 namespace iPOPreg
 {
@@ -39,6 +40,7 @@ namespace iPOPreg
 
         private void Escanear_RegistroQR_Click(object sender, RoutedEventArgs e)
         {
+            host.Child = null;
             QrEncoder qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
             QrCode qrCode = new QrCode();
             qrEncoder.TryEncode(CodigoQR_RegistroQR.Text,out qrCode);
@@ -47,16 +49,52 @@ namespace iPOPreg
 
             renderer.WriteToStream(qrCode.Matrix,ImageFormat.Png,ms);
             var imageTemp = new Bitmap(ms);
-            var image = new Bitmap(imageTemp, new Size(new Point(200,200)));
+            var image = new Bitmap(imageTemp, new Size(new Point(400,400)));
 
-            Panel QRresult_RegistroQR = new Panel();
             QRresult_RegistroQR.BackgroundImage = image;
             QRresult_RegistroQR.BackgroundImageLayout = ImageLayout.Stretch;
             QRresult_RegistroQR.AutoSize = true;
 
             host.Child = QRresult_RegistroQR;
+
+            Guardar_RegistrosQR.IsEnabled = false;
             CodigoQR_RegistroQR.Clear();
             CodigoQR_RegistroQR.Focus();
+        }
+
+        private void Generar_RegistrosQR_Click(object sender, RoutedEventArgs e)
+        {
+            host.Child = null;
+            QrEncoder qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
+            QrCode qrCode = new QrCode();
+            qrEncoder.TryEncode(CodigoQR_RegistroQR.Text, out qrCode);
+            GraphicsRenderer renderer = new GraphicsRenderer(new FixedCodeSize(400, QuietZoneModules.Zero), Brushes.Black, Brushes.White);
+            MemoryStream ms = new MemoryStream();
+
+            renderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, ms);
+            var imageTemp = new Bitmap(ms);
+            var image = new Bitmap(imageTemp, new Size(new Point(400, 400)));
+
+            QRresult_RegistroQR.BackgroundImage = image;
+            QRresult_RegistroQR.BackgroundImageLayout = ImageLayout.Stretch;
+            QRresult_RegistroQR.AutoSize = true;
+
+            host.Child = QRresult_RegistroQR;
+            Guardar_RegistrosQR.IsEnabled = true;
+        }
+
+        private void Guardar_RegistrosQR_Click(object sender, RoutedEventArgs e)
+        {
+            Image img = (Image)QRresult_RegistroQR.BackgroundImage;
+            SaveFileDialog CajaDialogoGuardar = new SaveFileDialog();
+            CajaDialogoGuardar.AddExtension = true;
+            CajaDialogoGuardar.Filter = "Image PNG (*.png) |*.png";
+            CajaDialogoGuardar.ShowDialog();
+            if (!string.IsNullOrEmpty(CajaDialogoGuardar.FileName))
+            {
+                img.Save(CajaDialogoGuardar.FileName,ImageFormat.Png);
+            }
+            img.Dispose();
         }
     }
 }
