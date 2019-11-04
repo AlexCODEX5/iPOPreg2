@@ -15,11 +15,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Diagnostics;
 using System.IO;
 using Size = System.Drawing.Size;
 using Point = System.Drawing.Point;
 using Panel = System.Windows.Forms.Panel;
 using Image = System.Drawing.Image;
+using MessageBox = System.Windows.MessageBox;
 
 namespace iPOPreg
 {
@@ -95,6 +97,26 @@ namespace iPOPreg
                 img.Save(CajaDialogoGuardar.FileName,ImageFormat.Png);
             }
             img.Dispose();
+        }
+
+        private void Personalizado_RegistrarQR_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process Personalizar;
+                Personalizar = Process.Start(@"Appnee_Generator\BarcodeGenerator.exe");
+                do
+                {
+                    this.Hide();
+                }
+                while (Personalizar.HasExited == false);
+                
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            this.Show();
         }
     }
 }

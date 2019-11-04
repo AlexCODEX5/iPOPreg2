@@ -13,11 +13,12 @@
         <Label Content="Código QR:" HorizontalAlignment="Left" Height="29" Margin="23,41,0,0" VerticalAlignment="Top" Width="79"/>
         <WindowsFormsHost x:Name="host" HorizontalAlignment="Left" Height="287" Margin="102,86,0,0" VerticalAlignment="Top" Width="287">
             <wf:Panel x:Name="QRresult_RegistroQR" Height="400" Width="400">
-                
+
             </wf:Panel>
         </WindowsFormsHost>
-        <Button x:Name="Generar_RegistrosQR" Content="Generar" HorizontalAlignment="Left" Height="20" Margin="414,130,0,0" VerticalAlignment="Top" Width="129" Click="Generar_RegistrosQR_Click"/>
-        <Button x:Name="Guardar_RegistrosQR" Content="Guardar " HorizontalAlignment="Left" Height="20" Margin="414,169,0,0" VerticalAlignment="Top" Width="129" IsEnabled="False" Click="Guardar_RegistrosQR_Click"/>
+        <Button x:Name="Generar_RegistrosQR" Content="Generar" HorizontalAlignment="Left" Height="20" Margin="415,129,0,0" VerticalAlignment="Top" Width="128" Click="Generar_RegistrosQR_Click"/>
+        <Button x:Name="Guardar_RegistrosQR" Content="Guardar " HorizontalAlignment="Left" Height="20" Margin="415,166,0,0" VerticalAlignment="Top" Width="128" IsEnabled="False" Click="Guardar_RegistrosQR_Click"/>
+        <Button x:Name="Personalizado_RegistrarQR" Content="Perzonalizado" HorizontalAlignment="Left" Height="20" Margin="415,214,0,0" VerticalAlignment="Top" Width="128" Click="Personalizado_RegistrarQR_Click"/>
 
     </Grid>
 </Window>

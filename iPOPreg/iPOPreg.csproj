@@ -139,5 +139,6 @@
   <ItemGroup>
     <Resource Include="kissclipart-scan-qr-code-icon-clipart-qr-code-computer-icons-b-b6538eff45964836.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
