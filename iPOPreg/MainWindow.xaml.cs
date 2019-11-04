@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace iPOPreg
         {
             InitializeComponent();
         }
+        DataSet datos = new DataSet("MiBaseDatos");
+        DataTable tabla = new DataTable("MySQL");
 
         private void Salir_Login_Click(object sender, RoutedEventArgs e)
         {
@@ -49,7 +52,21 @@ namespace iPOPreg
 
         private void Panel_Login_Loaded(object sender, RoutedEventArgs e)
         {
+            
             User_Login.Focus();
+            try
+            {
+                datos.ReadXml("MiArchivo.xml", XmlReadMode.Auto);//Cambiar Nombre de archivo
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Se creara una nueva tabla de datos de conexion de la Base de Datos\n\n{ex.Message}","No se encontro el Archivo de Conexión");
+                tabla.Columns.Add(new DataColumn("datasource", Type.GetType("System.String")));
+                tabla.Columns.Add(new DataColumn("port", Type.GetType("System.String")));
+                tabla.Columns.Add(new DataColumn("username", Type.GetType("System.String")));
+                tabla.Columns.Add(new DataColumn("password", Type.GetType("System.String")));
+                tabla.Columns.Add(new DataColumn("datasource", Type.GetType("System.String")));
+            }
         }
 
 

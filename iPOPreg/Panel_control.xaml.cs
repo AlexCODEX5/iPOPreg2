@@ -40,10 +40,8 @@ namespace iPOPreg
         private void InsertarQR_Panel_Click(object sender, RoutedEventArgs e)
         {
             Registrar_qr registroQR = new Registrar_qr();
-                registroQR.Owner = this;
-                registroQR.Show();
-                registroQR.Topmost = true;
-
+            registroQR.Show();
+            registroQR.Owner = this;
         }
     }
 }

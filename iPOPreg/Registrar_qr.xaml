@@ -1,4 +1,4 @@
-﻿<Window x:Class="iPOPreg.Registrar_qr"
+﻿<Window x:Name="___Sin_nombre_" x:Class="iPOPreg.Registrar_qr"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:local="clr-namespace:iPOPreg"
         mc:Ignorable="d"
-        Title="Registros Código QR" Height="428.465" Width="590.277" ResizeMode="NoResize" >
+        Title="Registros Código QR" Height="474.132" Width="590.277" ResizeMode="NoResize" >
     <Grid x:Name="RegistroQR_Panel" Loaded="RegistroQR_Panel_Loaded">
         <Button x:Name="Escanear_RegistroQR" Content="Escanear" HorizontalAlignment="Left" Height="20" Margin="415,91,0,0" VerticalAlignment="Top" Width="128" IsDefault="True" Click="Escanear_RegistroQR_Click"/>
         <TextBox x:Name="CodigoQR_RegistroQR" HorizontalAlignment="Left" Height="26" Margin="102,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="441" VerticalContentAlignment="Center"/>
@@ -19,6 +19,12 @@
         <Button x:Name="Generar_RegistrosQR" Content="Generar" HorizontalAlignment="Left" Height="20" Margin="415,129,0,0" VerticalAlignment="Top" Width="128" Click="Generar_RegistrosQR_Click"/>
         <Button x:Name="Guardar_RegistrosQR" Content="Guardar " HorizontalAlignment="Left" Height="20" Margin="415,166,0,0" VerticalAlignment="Top" Width="128" IsEnabled="False" Click="Guardar_RegistrosQR_Click"/>
         <Button x:Name="Personalizado_RegistrarQR" Content="Perzonalizado" HorizontalAlignment="Left" Height="20" Margin="415,214,0,0" VerticalAlignment="Top" Width="128" Click="Personalizado_RegistrarQR_Click"/>
+        <Label Content="La herramienta de &#xD;&#xA;AppNee Barcode Generator&#xD;&#xA;6.0323 puede ser&#xD;&#xA;descargada de la pagina de&#xD;&#xA;AppNee Freeware&#xD;&#xA;© Aurora3D Software&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Height="121" Margin="408,252,0,0" VerticalAlignment="Top" Width="157"/>
+        <TextBlock x:Name="Descarga_RegistroQR" HorizontalAlignment="Left" Height="17" Margin="267,378,0,0" TextWrapping="Wrap" Text="https://appnee.com/barcode-generator/" VerticalAlignment="Top" Width="298" Foreground="#FF2040D1" MouseLeftButtonDown="Descarga_RegistroQR_MouseLeftButtonDown" Cursor="Hand"/>
+        <TextBlock HorizontalAlignment="Left" Height="17" Margin="73,378,0,0" TextWrapping="Wrap" Text="Herramienta Gratuita obtenida de:" VerticalAlignment="Top" Width="189"/>
+        <TextBlock HorizontalAlignment="Left" Height="17" Margin="73,399,0,0" TextWrapping="Wrap" Text="Bajo Licencia Creative Commons" VerticalAlignment="Top" Width="189"/>
+        <TextBlock x:Name="Licencia_RegistroQR" HorizontalAlignment="Left" Height="17" Margin="267,399,0,0" TextWrapping="Wrap" Text="https://creativecommons.org/licenses/by-nc-sa/4.0/" VerticalAlignment="Top" Width="298" Foreground="#FF2040D1" MouseLeftButtonDown="Licencia_RegistroQR_MouseLeftButtonDown" Cursor="Hand"/>
+        <TextBlock HorizontalAlignment="Left" Height="17" Margin="408,356,0,0" TextWrapping="Wrap" Text="*Click para copiar los enlaces" VerticalAlignment="Top" Width="157" Foreground="#FFE22E2E"/>
 
     </Grid>
 </Window>

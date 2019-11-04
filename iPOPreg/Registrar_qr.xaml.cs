@@ -22,6 +22,7 @@ using Point = System.Drawing.Point;
 using Panel = System.Windows.Forms.Panel;
 using Image = System.Drawing.Image;
 using MessageBox = System.Windows.MessageBox;
+using Clipboard = System.Windows.Clipboard;
 
 namespace iPOPreg
 {
@@ -117,6 +118,16 @@ namespace iPOPreg
                 MessageBox.Show(ex.Message);
             }
             this.Show();
+        }
+
+        private void Descarga_RegistroQR_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Clipboard.SetText(Descarga_RegistroQR.Text);
+        }
+
+        private void Licencia_RegistroQR_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Clipboard.SetText(Licencia_RegistroQR.Text);
         }
     }
 }
