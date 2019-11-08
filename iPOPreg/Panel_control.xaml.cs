@@ -43,5 +43,24 @@ namespace iPOPreg
             registroQR.Show();
             registroQR.Owner = this;
         }
+
+        private void RegistroEq_Panel_Click(object sender, RoutedEventArgs e)
+        {
+            NuevoRegistro nuevoRegistro = new NuevoRegistro();
+            nuevoRegistro.Owner = this;
+            nuevoRegistro.ShowDialog();
+        }
+
+        private void Panel_PControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!(System.IO.File.Exists("bd.conf.xml")))
+
+            {
+                MessageBox.Show("Su sesion termina aqui\n\nNo se encontro el archivo bd.conf.xml");
+                MainWindow logout = new MainWindow();
+                logout.Show();
+                this.Close();
+            }
+        }
     }
 }

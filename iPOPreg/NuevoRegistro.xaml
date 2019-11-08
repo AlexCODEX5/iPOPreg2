@@ -1,0 +1,54 @@
+﻿<Window x:Class="iPOPreg.NuevoRegistro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iPOPreg"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        mc:Ignorable="d"
+        Title="NuevoRegistro" Height="450" Width="800">
+    <Grid x:Name="Panel_NuevoRegistro" Loaded="Panel_NuevoRegistro_Loaded">
+        <Label Content="Código Inventario:" HorizontalAlignment="Left" Height="29" Margin="49,52,0,0" VerticalAlignment="Top" Width="154"/>
+        <ComboBox x:Name="EstadosItem_NuevoRegistro" HorizontalAlignment="Left" Height="27" Margin="230,146,0,0" VerticalAlignment="Top" Width="196"/>
+        <Label Content="Estado del Item:" HorizontalAlignment="Left" Height="29" Margin="49,144,0,0" VerticalAlignment="Top" Width="154"/>
+        <Label Content="Responsable del ambiente:" HorizontalAlignment="Left" Height="29" Margin="49,81,0,0" VerticalAlignment="Top" Width="154"/>
+        <Label Content="Fecha:" HorizontalAlignment="Left" Height="29" Margin="314,52,0,0" VerticalAlignment="Top" Width="154"/>
+        <Label Content="Hora:" HorizontalAlignment="Left" Height="29" Margin="531,52,0,0" VerticalAlignment="Top" Width="154"/>
+        <Label Content="Fecha de devolución:" HorizontalAlignment="Left" Height="30" Margin="49,359,0,0" VerticalAlignment="Top" Width="154"/>
+        <Label Content="Usuario Responsable del Ítem:" HorizontalAlignment="Left" Height="30" Margin="49,325,0,0" VerticalAlignment="Top" Width="174"/>
+        <CheckBox x:Name="Prestamo_NuevoRegistro" Content="Préstamo" HorizontalAlignment="Left" Height="15" Margin="435,150,0,0" VerticalAlignment="Top" Width="152" Click="Prestamo_NuevoRegistro_Click"/>
+        <TextBox x:Name="CodIn_NuevoRegistro" HorizontalAlignment="Left" Height="23" Margin="162,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147"/>
+        <TextBox x:Name="TimePicker_NuevoRegistro" HorizontalAlignment="Left" Height="23" Margin="576,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147"/>
+        <Label Content="Descripción:" HorizontalAlignment="Left" Height="29" Margin="49,204,0,0" VerticalAlignment="Top" Width="154"/>
+        <Label Content="Marca:" HorizontalAlignment="Left" Height="29" Margin="49,233,0,0" VerticalAlignment="Top" Width="154"/>
+        <Label Content="Modelo:" HorizontalAlignment="Left" Height="29" Margin="49,262,0,0" VerticalAlignment="Top" Width="154"/>
+        <Label Content="Nro. Serie:" HorizontalAlignment="Left" Height="29" Margin="49,291,0,0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="CatalogoSBN_NuevoRegistro" HorizontalAlignment="Left" Height="23" Margin="144,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" TextChanged="CatalogoSBN_NuevoRegistro_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="144,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="144,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="144,290,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216"/>
+        <ListBox x:Name="CatalogoList_NuevoRegistro" HorizontalAlignment="Left" Height="144" Margin="401,204,0,0" VerticalAlignment="Top" Width="322"/>
+        <TextBox x:Name="UsuarioPrestamo_NuevoRegistro" HorizontalAlignment="Left" Height="23" Margin="230,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" IsEnabled="False"/>
+        <Button x:Name="Enviar_NuevoRegistrar" Content="Enviar" HorizontalAlignment="Left" Height="21" Margin="596,368,0,0" VerticalAlignment="Top" Width="127" Click="Enviar_NuevoRegistrar_Click"/>
+        <DatePicker x:Name="DatePicker_NuevoRegistro" HorizontalAlignment="Left" Margin="359,55,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="AddResp_NuevoRegistro" Content="+" HorizontalAlignment="Left" Height="33" Margin="367,320,0,0" VerticalAlignment="Top" Width="21" FontSize="20" Padding="1" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Background="#FF4DFF45" IsEnabled="False">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.143"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <DatePicker x:Name="DevolucionDP_NuevoRegistro" HorizontalAlignment="Left" Margin="230,360,0,0" VerticalAlignment="Top" Height="23" Width="130" IsEnabled="False" SelectedDateChanged="DevolucionDP_NuevoRegistro_SelectedDateChanged"/>
+        <Label x:Name="DisplayDev_NuevoRegistro" Content="Sera devuelto en..." HorizontalAlignment="Left" Height="23" Margin="374,360,0,0" VerticalAlignment="Top" Width="130"/>
+        <WindowsFormsHost x:Name="hostResponsable" HorizontalAlignment="Left" Height="23" Margin="203,87,0,0" VerticalAlignment="Top" Width="520">
+            <wf:TextBox x:Name="nuevo">
+                
+            </wf:TextBox>
+        </WindowsFormsHost>
+        <Label Content="Meta 50 equipos" HorizontalAlignment="Left" Height="37" Margin="49,10,0,0" VerticalAlignment="Top" Width="300" FontWeight="Bold" FontSize="20"/>
+
+    </Grid>
+</Window>

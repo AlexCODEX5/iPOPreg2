@@ -10,7 +10,7 @@
         <Border.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FF2B346A" Offset="0"/>
-                <GradientStop Color="#FF43996A" Offset="1"/>
+                <GradientStop Color="#FF35CF7A" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
         <Grid x:Name="Panel_Login" Loaded="Panel_Login_Loaded">
@@ -27,7 +27,7 @@
                 </Grid>
             </Border>
             <Button x:Name="Verificar_Login" Content="Verificar" HorizontalAlignment="Left" Margin="67,245,0,0" VerticalAlignment="Top" Width="107" Height="22" IsDefault="True" Background="#FFA7FFCB" Grid.Row="1" Click="Verificar_Login_Click"/>
-            <Button Content="Actualizar Lista" HorizontalAlignment="Left" Margin="514,56,0,0" VerticalAlignment="Top" Width="187" Height="22" Background="#FFA7FFCB" Grid.Row="1"/>
+            <Button x:Name="RefreshList_Login" Content="Actualizar Lista" HorizontalAlignment="Left" Margin="514,56,0,0" VerticalAlignment="Top" Width="187" Height="22" Background="#FFA7FFCB" Grid.Row="1" Click="RefreshList_Login_Click"/>
             <ListBox x:Name="UserList_Login" HorizontalAlignment="Left" Height="146" Margin="420,83,0,0" VerticalAlignment="Top" Width="281" Background="#FFD8FFD8" Grid.Row="1"/>
             <Button x:Name="Salir_Login" Content="Salir" HorizontalAlignment="Left" Margin="626,247,0,0" VerticalAlignment="Top" Width="75" Click="Salir_Login_Click" Background="#FFDBFFA7" Foreground="Black" IsCancel="True" Grid.Row="1" Height="20"/>
             <Border BorderThickness="1" Height="62" VerticalAlignment="Top" Background="#FF13243E" CornerRadius="30,30,0,0" MouseLeftButtonDown="BordeTit_MouseLeftButtonDown">

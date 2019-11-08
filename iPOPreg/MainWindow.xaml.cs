@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using MySql.Data;
 
 namespace iPOPreg
 {
@@ -26,7 +28,7 @@ namespace iPOPreg
             InitializeComponent();
         }
         DataSet datos = new DataSet("MiBaseDatos");
-        DataTable tabla = new DataTable("MySQL");
+        BDasistente loginAsist = new BDasistente();
 
         private void Salir_Login_Click(object sender, RoutedEventArgs e)
         {
@@ -56,19 +58,83 @@ namespace iPOPreg
             User_Login.Focus();
             try
             {
-                datos.ReadXml("MiArchivo.xml", XmlReadMode.Auto);//Cambiar Nombre de archivo
+                datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);//Cambiar Nombre de archivo
             }
             catch(Exception ex)
             {
                 MessageBox.Show($"Se creara una nueva tabla de datos de conexion de la Base de Datos\n\n{ex.Message}","No se encontro el Archivo de Conexión");
-                tabla.Columns.Add(new DataColumn("datasource", Type.GetType("System.String")));
-                tabla.Columns.Add(new DataColumn("port", Type.GetType("System.String")));
-                tabla.Columns.Add(new DataColumn("username", Type.GetType("System.String")));
-                tabla.Columns.Add(new DataColumn("password", Type.GetType("System.String")));
-                tabla.Columns.Add(new DataColumn("datasource", Type.GetType("System.String")));
+                //datos se carga de XML
+                loginAsist.ConfigDefault(datos);
             }
+            //Se puede agregar a la BDasistente
+            string datasource = loginAsist.Datasource(datos);
+            string port = loginAsist.Port(datos);
+            string username = loginAsist.Username(datos);
+            string password = loginAsist.Password(datos);
+            string database = loginAsist.Database(datos);
+            loginAsist.SetCadenaConexion(datasource, port, username, password, database);
+
+            MySqlConnection Login_Con = new MySqlConnection(loginAsist.CadenaConexion());
+            try
+            {
+                Login_Con.Open();
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if (Login_Con.State == ConnectionState.Open)
+            {
+                MySqlDataReader reader = loginAsist.ListUser(Login_Con);
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string[] row = { reader.GetString(0), reader.GetString(1)};
+                        UserList_Login.Items.Add($"{row[0]} {row[1]}");
+                    }
+                }
+            }
+            Login_Con.Close();
+            MySqlConnection.ClearPool(Login_Con);
         }
 
+        private void RefreshList_Login_Click(object sender, RoutedEventArgs e)
+        {
+            string datasource = loginAsist.Datasource(datos);
+            string port = loginAsist.Port(datos);
+            string username = loginAsist.Username(datos);
+            string password = loginAsist.Password(datos);
+            string database = loginAsist.Database(datos);
+            loginAsist.SetCadenaConexion(datasource, port, username, password, database);
 
+            MySqlConnection Login_Con = new MySqlConnection(loginAsist.CadenaConexion());
+            try
+            {
+                Login_Con.Open();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if (Login_Con.State == ConnectionState.Open)
+            {
+                MySqlDataReader reader = loginAsist.ListUser(Login_Con);
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string[] row = { reader.GetString(0), reader.GetString(1) };
+                        UserList_Login.Items.Add($"{row[0]} {row[1]}");
+                    }
+                }
+            }
+            Login_Con.Close();
+            MySqlConnection.ClearPool(Login_Con);
+        }
     }
 }

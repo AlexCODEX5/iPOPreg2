@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Panel de control" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
     <Border Background="#FF1476C9" CornerRadius="15" MouseLeftButtonDown="Panel_PControl_MouseLeftButtonDown">
-        <Grid x:Name="Panel_PControl">
+        <Grid x:Name="Panel_PControl" Loaded="Panel_PControl_Loaded">
             <Button x:Name="Logout_Panel" Content="" HorizontalAlignment="Left" Height="51" Margin="0,98,0,0" VerticalAlignment="Top" Width="53" BorderBrush="#FF6EDACB" ToolTip="Cerrar Sesion" Click="Logout_Panel_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="systemlogout_103399.ico"/>
@@ -18,8 +18,8 @@
                     <ImageBrush ImageSource="Accept-User.ico"/>
                 </Button.Background>
             </Button>
-            <Button Content="Registro de &#xD;&#xA;Equipos" HorizontalAlignment="Left" Height="48" Margin="684,32,0,0" VerticalAlignment="Top" Width="116" FontFamily="Nirmala UI" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA"/>
-            <Label x:Name="Titulo_Panel" Content="PANEL DE CONSULTAS" HorizontalAlignment="Left" Height="42" Margin="50,26,0,0" VerticalAlignment="Top" Width="553" FontSize="20" Foreground="White" FontFamily="Microsoft YaHei UI"/>
+            <Button x:Name="RegistroEq_Panel" Content="Registro de &#xD;&#xA;Equipos" HorizontalAlignment="Left" Height="48" Margin="684,32,0,0" VerticalAlignment="Top" Width="116" FontFamily="Nirmala UI" FontSize="16" BorderBrush="#FF6092C5" Background="#FF8FD7EC" Click="RegistroEq_Panel_Click"/>
+            <Label x:Name="Titulo_Panel" Content="PANEL DE CONSULTAS" HorizontalAlignment="Left" Height="42" Margin="50,26,0,0" VerticalAlignment="Top" Width="553" FontSize="22" Foreground="White" FontFamily="Microsoft YaHei UI"/>
             <Button Content="Equipos &#xD;&#xA;Prestados" HorizontalAlignment="Left" Height="48" Margin="576,32,0,0" VerticalAlignment="Top" Width="108" FontFamily="Tahoma" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA"/>
             <Button Content="Entrada de &#xD;&#xA;Equipos" HorizontalAlignment="Left" Height="48" Margin="360,31,0,0" VerticalAlignment="Top" Width="108" FontFamily="Tahoma" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA"/>
             <Button Content="Salida de &#xD;&#xA;Equipos" HorizontalAlignment="Left" Height="48" Margin="468,32,0,0" VerticalAlignment="Top" Width="108" FontFamily="Tahoma" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA"/>
