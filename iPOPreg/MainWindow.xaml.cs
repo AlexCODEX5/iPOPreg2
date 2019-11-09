@@ -42,9 +42,31 @@ namespace iPOPreg
 
         private void Verificar_Login_Click(object sender, RoutedEventArgs e)
         {
-            Panel_control ingreso = new Panel_control();
-            ingreso.Show();
-            this.Close();
+            loginAsist.AutoSetCadenaConexion(datos);
+
+            MySqlConnection iniciar = new MySqlConnection(loginAsist.CadenaConexion());
+            try
+            {
+                iniciar.Open();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Error de conexion");
+            }
+            if (iniciar.State == ConnectionState.Open)
+            {
+                MySqlDataReader reader = loginAsist.ListUserVerification(iniciar,User_Login.Text,Psw_Login.Password);
+                if (reader.HasRows)
+                {
+                    Panel_control ingreso = new Panel_control();
+                    ingreso.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o contraseña incorrectos, verifique que esta registrado","No registrado");
+                }
+            }
         }
 
         private void BordeTit_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -41,6 +41,12 @@ namespace iPOPreg
         {
             conectionString = $"datasource={datasource};port={port};username={username};password={password};database={database};";
         }
+
+        public void AutoSetCadenaConexion(DataSet datos)
+        {
+            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
+            SetCadenaConexion(Datasource(datos),Port(datos), Username(datos), Password(datos), Database(datos));
+        }
         
         public string CadenaTable()
         {
@@ -58,6 +64,14 @@ namespace iPOPreg
         }
 
         //reader
+        public MySqlDataReader ListUserVerification(MySqlConnection conexion,string usuario, string contraseña)
+        {
+            query = $"SELECT `DNI`, `Usuario`, `CONTRASEÑA`, `ESTADO` FROM `docente` WHERE `Usuario`='{usuario}' AND `CONTRASEÑA`='{contraseña}'";
+            MySqlCommand comando = new MySqlCommand(query, conexion);
+            MySqlDataReader reader = comando.ExecuteReader();
+            return reader;
+        }
+        
         public MySqlDataReader ListUser(MySqlConnection conexion)
         {
             query = "SELECT `Nombre`,`Apellidos` FROM `docente`";
@@ -78,27 +92,39 @@ namespace iPOPreg
             return reader;
         }
 
-        public MySqlDataReader In_Prestados(MySqlConnection conexion, string nroinvent, string descripcion , string marca, string modelo, string nroserie, string usuarioresp, DateTime fechasalida, DateTime fechadevolucion, string hora, string personal)
+        public MySqlDataReader ListPrestados(MySqlConnection conexion, string codinvent)
         {
-            query = $"INSERT INTO `equipos_prestados`(`Nro_inventario`, `descripcion`, `marca`, `modelo`, `nro_serie`, `usuario_responsable`, `fecha_salida`, `hora`, `personal_atencion`, `fecha_devolucion`) VALUES ('{nroinvent}','{descripcion}','{marca}','{modelo}','{nroserie}','{usuarioresp}','{fechasalida.Date.ToString("DD/MM/AAAA")}', '{hora}', '{personal}','{fechadevolucion.Date.ToString("DD/MM/AAAA")}'";
+            query = $"SELECT * FROM `equipos_prestados` WHERE `Nro_inventario` LIKE '%{codinvent}%'";
+            MySqlCommand comando = new MySqlCommand(query,conexion);
+            comando.CommandTimeout = 60;
+            MySqlDataReader reader = comando.ExecuteReader();
+            return reader;
+        }
+
+        public MySqlDataReader In_Prestados(MySqlConnection conexion, string nroinvent, string descripcion , string marca, string modelo, string nroserie, string usuarioresp, DateTime fechasalida, DateTime fechadevolucion, string hora, string personal, string observaciones)
+        {
+            query = $"INSERT INTO `equipos_prestados`(`Nro_inventario`, `descripcion`, `marca`, `modelo`, `nro_serie`, `usuario_responsable`, `fecha_salida`, `hora`, `personal_atencion`, `fecha_devolucion`, `observaciones`) VALUES ('{nroinvent}','{descripcion}','{marca}','{modelo}','{nroserie}','{usuarioresp}','{fechasalida.ToString("yyyyMMdd")}', '{hora}', '{personal}','{fechadevolucion.ToString("yyyyMMdd")}','{observaciones}')";
             MySqlCommand comando = new MySqlCommand(query, conexion);
+            comando.CommandTimeout = 60;
             MySqlDataReader reader = comando.ExecuteReader();
            
             return reader;
         }
 
-        public MySqlDataReader In_Salida(MySqlConnection conexion, string nroinvent, string descripcion, string marca, string modelo, string nroserie, string usuarioresp, DateTime fechasalida, string hora, string personal)
+        public MySqlDataReader In_Salida(MySqlConnection conexion, string nroinvent, string descripcion, string marca, string modelo, string nroserie, DateTime fechasalida, string hora, string personal, string observaciones)
         {
-            query = $"INSERT INTO `equipos_salida`(`Nro_inventario`, `descripcion`, `marca`, `modelo`, `nro_serie`, `usuario_responsable`, `fecha_salida`, `hora`, `personal_atencion`) VALUES ('{nroinvent}','{descripcion}','{marca}','{modelo}','{nroserie}','{usuarioresp}','{fechasalida.Date.ToString("dd/mm/aaaa")}','{hora}','{personal}')";
+            query = $"INSERT INTO `equipos_salida`(`Nro_inventario`, `descripcion`, `marca`, `modelo`, `nro_serie`, `fecha_salida`, `hora`, `personal_atencion`, `observaciones`) VALUES ('{nroinvent}','{descripcion}','{marca}','{modelo}','{nroserie}','{fechasalida.ToString("yyyyMMdd")}','{hora}','{personal}','{observaciones}')";
             MySqlCommand comando = new MySqlCommand(query,conexion);
+            comando.CommandTimeout = 60;
             MySqlDataReader reader = comando.ExecuteReader();
             return reader;
         }
 
-        public MySqlDataReader In_Entrada(MySqlConnection conexion, string nroinvent, string descripcion, string marca, string modelo, string nroserie, string usuarioresp, DateTime fechasalida, string hora, string personal)
+        public MySqlDataReader In_Entrada(MySqlConnection conexion, string nroinvent, string descripcion, string marca, string modelo, string nroserie, DateTime fechasalida, string hora, string personal, string observaciones)
         {
-            query = $"INSERT INTO `equipos_salida`(`Nro_inventario`, `descripcion`, `marca`, `modelo`, `nro_serie`, `usuario_responsable`, `fecha_salida`, `hora`, `personal_atencion`) VALUES ('{nroinvent}','{descripcion}','{marca}','{modelo}','{nroserie}','{usuarioresp}','{fechasalida.Date.ToString("dd/mm/aaaa")}','{hora}','{personal}')";
+            query = $"INSERT INTO `equipos_entrada`(`Nro_inventario`, `descripcion`, `marca`, `modelo`, `nro_serie`, `fecha_entrada`, `hora`, `personal_atencion`, `observaciones`) VALUES ('{nroinvent}','{descripcion}','{marca}','{modelo}','{nroserie}','{fechasalida.ToString("yyyyMMdd")}','{hora}','{personal}','{observaciones}')";
             MySqlCommand comando = new MySqlCommand(query, conexion);
+            comando.CommandTimeout = 60;
             MySqlDataReader reader = comando.ExecuteReader();
             return reader;
         }
@@ -126,26 +152,31 @@ namespace iPOPreg
 
         public string Datasource(DataSet datos)
         {
+            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
             return datos.Tables["MySQL"].Rows[0]["datasource"].ToString();
         }
 
         public string Port(DataSet datos)
         {
+            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
             return datos.Tables["MySQL"].Rows[0]["port"].ToString();
         }
 
         public string Username(DataSet datos)
         {
+            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
             return datos.Tables["MySQL"].Rows[0]["username"].ToString();
         }
 
         public string Password(DataSet datos)
         {
+            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
             return DesEncriptar(datos.Tables["MySQL"].Rows[0]["password"].ToString());
         }
 
         public string Database(DataSet datos)
         {
+            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
             return datos.Tables["MySQL"].Rows[0]["database"].ToString();
         }
     }
