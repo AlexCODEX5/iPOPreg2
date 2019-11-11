@@ -73,7 +73,6 @@ namespace iPOPreg
             {
                 UsuarioPrestamo_NuevoRegistro.Enabled = true;
                 DevolucionDP_NuevoRegistro.IsEnabled = true;
-                AddResp_NuevoRegistro.IsEnabled = true;
                 EstadosItem_NuevoRegistro.SelectedIndex = 1;
                 EstadosItem_NuevoRegistro.IsEnabled = false;
             }
@@ -81,7 +80,6 @@ namespace iPOPreg
             {
                 UsuarioPrestamo_NuevoRegistro.Enabled = false;
                 DevolucionDP_NuevoRegistro.IsEnabled = false;
-                AddResp_NuevoRegistro.IsEnabled = false;
                 EstadosItem_NuevoRegistro.IsEnabled = true;
             }
         }
@@ -109,6 +107,7 @@ namespace iPOPreg
             CodIn_NuevoRegistro.AutoCompleteCustomSource = codinvSource;
             CodIn_NuevoRegistro.AutoCompleteMode = AutoCompleteMode.Suggest;
             CodIn_NuevoRegistro.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            hostCodin.Child = CodIn_NuevoRegistro;
         }
 
         private AutoCompleteStringCollection GetSource()
@@ -178,10 +177,27 @@ namespace iPOPreg
                 {
                     MessageBox.Show("Seleccione si va ser de salida o entrada");
                 }
-                
+
                 if (Prestamo_NuevoRegistro.IsChecked == true)
                 {
-                    reader = RegistroAsist.In_Prestados(submit, CodIn_NuevoRegistro.Text, CatalogoSBN_NuevoRegistro.Text, Marca_NuevoRegistro.Text, Modelo_NuevoRegistro.Text, Nroserie_NuevoRegistro.Text, UsuarioPrestamo_NuevoRegistro.Text, DatePicker_NuevoRegistro.SelectedDate.Value, DevolucionDP_NuevoRegistro.SelectedDate.Value, TimePicker_NuevoRegistro.Text, nuevo.Text, obs_RegistroNuevo.Text);
+                    reader = RegistroAsist.ListPrestadosVerification(submit, CodIn_NuevoRegistro.Text);
+                    if (reader.HasRows)
+                    {
+                        reader.Close();
+                        try
+                        {
+                            reader = RegistroAsist.UpdatePrestados(submit, obs_RegistroNuevo.Text, CodIn_NuevoRegistro.Text, UsuarioPrestamo_NuevoRegistro.Text, DatePicker_NuevoRegistro.SelectedDate.Value, DevolucionDP_NuevoRegistro.SelectedDate.Value);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Verifique que no haya cambiado los datos principales\n\n{ex.Message}", "Error");
+                        }
+                        reader.Close();
+                    }   
+                    else
+                    {
+                        reader = RegistroAsist.In_Prestados(submit, CodIn_NuevoRegistro.Text, CatalogoSBN_NuevoRegistro.Text, Marca_NuevoRegistro.Text, Modelo_NuevoRegistro.Text, Nroserie_NuevoRegistro.Text, UsuarioPrestamo_NuevoRegistro.Text, DatePicker_NuevoRegistro.SelectedDate.Value, DevolucionDP_NuevoRegistro.SelectedDate.Value, TimePicker_NuevoRegistro.Text, nuevo.Text, obs_RegistroNuevo.Text);
+                    }
                     //if(se encuentra registrado un producto se colocara como devuelto): Se marcara el producto como devuelto
                     reader.Close();
                 }
@@ -205,7 +221,7 @@ namespace iPOPreg
             }
         }
 
-        private void CodIn_NuevoRegistro_TextChanged(object sender, TextChangedEventArgs e)
+        private void CodIn_NuevoRegistro_TextChanged(object sender, EventArgs e)
         {
             RegistroAsist.AutoSetCadenaConexion(datos);
             MySqlConnection buscar = new MySqlConnection(RegistroAsist.CadenaConexion());
@@ -220,13 +236,22 @@ namespace iPOPreg
             }
             if (buscar.State == ConnectionState.Open)
             {
-                MySqlDataReader reader = RegistroAsist.ListPrestados(buscar,CodIn_NuevoRegistro.Text) ;
+                MySqlDataReader reader = RegistroAsist.ListPrestados(buscar, CodIn_NuevoRegistro.Text);
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
                         string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetString(10), reader.GetString(11) };
                         codinvSource.Add(row[0]);
+                    }
+                }
+                reader.Close();
+                reader = RegistroAsist.ListPrestadosVerification(buscar,CodIn_NuevoRegistro.Text);
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetString(10), reader.GetString(11) };
                         CatalogoSBN_NuevoRegistro.Text = row[1];
                         Marca_NuevoRegistro.Text = row[2];
                         Modelo_NuevoRegistro.Text = row[3];
@@ -245,13 +270,25 @@ namespace iPOPreg
                         TimeSpan resultado = DateTime.Today - DevolucionDP_NuevoRegistro.SelectedDate.Value;
                         if (resultado.Days > 0)
                         {
-                            LogEstado_NuevoRegistro.Content = $"Faltan {resultado.Days} para ser devuelto";
+                            LogEstado_NuevoRegistro.Content = $"Faltan {resultado.Days} dia(s)\n para ser devuelto";
                         }
                         else
                         {
-                            LogEstado_NuevoRegistro.Content = "ESTE OBJETO YA DEBIO SER DEVUELTO";
+                            if (resultado.Days == 0)
+                            {
+                                LogEstado_NuevoRegistro.Content = "ESTE OBJETO \nYA DEBE SER DEVUELTO";
+                            }
+                            else
+                            {
+                                LogEstado_NuevoRegistro.Content = "ESTE OBJETO \nYA DEBIO SER DEVUELTO";
+                            }
+
                         }
                     }
+                }
+                else
+                {
+                    LogEstado_NuevoRegistro.Content = "";
                 }
             }
 

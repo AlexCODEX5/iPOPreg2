@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,30 @@ namespace iPOPreg
 {
     class BDasistente
     {
+        public class User
+        {
+            private string dni = "";
+            private string nombre= "";
+            private string apellido= "";
+            private string ambiente = "";
+            
+            public void SetDni(string newdni)
+            {
+                dni = newdni;
+            }
+            public void SetNombre(string newnombre)
+            {
+                nombre = newnombre;
+            }
+            public void SetApellido(string newapellido)
+            {
+                apellido = newapellido;
+            }
+            public void SetAmbiente(string newambiente)
+            {
+                ambiente = newambiente;
+            }
+        }
         public string Encriptar(string _cadenaAencriptar)
         {
             string result = string.Empty;
@@ -94,10 +119,30 @@ namespace iPOPreg
 
         public MySqlDataReader ListPrestados(MySqlConnection conexion, string codinvent)
         {
-            query = $"SELECT * FROM `equipos_prestados` WHERE `Nro_inventario` LIKE '%{codinvent}%'";
+            query = $"SELECT * FROM `equipos_prestados` WHERE `Nro_inventario` LIKE '%{codinvent}%' AND `Devuelto`='no'";
             MySqlCommand comando = new MySqlCommand(query,conexion);
             comando.CommandTimeout = 60;
             MySqlDataReader reader = comando.ExecuteReader();
+            return reader;
+        }
+
+        public MySqlDataReader ListPrestadosVerification(MySqlConnection conexion, string codinvent)
+        {
+            query =  $"SELECT * FROM `equipos_prestados` WHERE `Nro_inventario`='{codinvent}' AND `Devuelto`='no'";
+            MySqlCommand comando = new MySqlCommand(query, conexion) ;
+            comando.CommandTimeout = 60;
+            MySqlDataReader reader = comando.ExecuteReader();
+            return reader;
+        }
+
+        public MySqlDataReader UpdatePrestados(MySqlConnection conexion, string observaciones, string Nroinventario, string usuarioresp, DateTime fecha, DateTime fechaDevolucion)
+        {
+            CultureInfo ci = new CultureInfo("Es-es");
+            query = $"UPDATE `equipos_prestados` SET `Devuelto`='si',`observaciones`='{observaciones}. Ha sido devuelto el {ci.DateTimeFormat.GetDayName(fecha.DayOfWeek)} {fecha.ToString("d")} a las {DateTime.Now.Hour.ToString()}:{DateTime.Now.ToString("mm")}' WHERE `Nro_inventario`='{Nroinventario}' AND `usuario_responsable`='{usuarioresp}' AND `fecha_devolucion`='{fechaDevolucion.ToString("yyyyMMdd")}' AND `observaciones`='{observaciones}'";
+            MySqlCommand comando = new MySqlCommand(query,conexion);
+            comando.CommandTimeout = 3;
+            MySqlDataReader reader = comando.ExecuteReader();
+            
             return reader;
         }
 
@@ -148,6 +193,11 @@ namespace iPOPreg
             filaNueva["database"] = "bd_ipopreg_iiee";
             tabla.Rows.Add(filaNueva);
             datos.WriteXml("bd.conf.xml", XmlWriteMode.WriteSchema);
+        }
+
+        public void AddResponsable()
+        {
+
         }
 
         public string Datasource(DataSet datos)

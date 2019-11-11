@@ -17,8 +17,8 @@
         <Label Content="Fecha de devolución:" HorizontalAlignment="Left" Height="30" Margin="49,359,0,0" VerticalAlignment="Top" Width="154"/>
         <Label Content="Usuario Responsable del Ítem:" HorizontalAlignment="Left" Height="30" Margin="49,325,0,0" VerticalAlignment="Top" Width="174"/>
         <CheckBox x:Name="Prestamo_NuevoRegistro" Content="Préstamo" HorizontalAlignment="Left" Height="15" Margin="435,150,0,0" VerticalAlignment="Top" Width="152" Click="Prestamo_NuevoRegistro_Click"/>
-        <WindowsFormsHost Margin="162,56,661,340">
-            <wf:TextBox x:Name="CodIn_NuevoRegistro">
+        <WindowsFormsHost x:Name="hostCodin" HorizontalAlignment="Left"  Margin="162,56,661,340" Width="143" Height="23" VerticalAlignment="Top">
+            <wf:TextBox x:Name="CodIn_NuevoRegistro" Height="23" TextChanged="CodIn_NuevoRegistro_TextChanged">
             </wf:TextBox>
         </WindowsFormsHost>
         <TextBox x:Name="TimePicker_NuevoRegistro" HorizontalAlignment="Left" Height="23" Margin="576,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147"/>
@@ -33,18 +33,8 @@
         <ListBox x:Name="CatalogoList_NuevoRegistro" HorizontalAlignment="Left" Height="144" Margin="401,204,0,0" VerticalAlignment="Top" Width="322" SelectionChanged="CatalogoList_NuevoRegistro_SelectionChanged"/>
         <Button x:Name="Enviar_NuevoRegistrar" Content="Enviar" HorizontalAlignment="Left" Height="21" Margin="596,368,0,0" VerticalAlignment="Top" Width="127" Click="Enviar_NuevoRegistrar_Click"/>
         <DatePicker x:Name="DatePicker_NuevoRegistro" HorizontalAlignment="Left" Margin="359,55,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="AddResp_NuevoRegistro" Content="+" HorizontalAlignment="Left" Height="33" Margin="369,319,0,0" VerticalAlignment="Top" Width="21" FontSize="20" Padding="1" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Background="#FF4DFF45" IsEnabled="False">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90.143"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
         <DatePicker x:Name="DevolucionDP_NuevoRegistro" HorizontalAlignment="Left" Margin="230,360,0,0" VerticalAlignment="Top" Height="23" Width="130" IsEnabled="False" SelectedDateChanged="DevolucionDP_NuevoRegistro_SelectedDateChanged"/>
-        <Label x:Name="DisplayDev_NuevoRegistro" Content="Sera devuelto en..." HorizontalAlignment="Left" Height="23" Margin="374,360,0,0" VerticalAlignment="Top" Width="130"/>
+        <Label x:Name="DisplayDev_NuevoRegistro" Content="Sera devuelto en..." HorizontalAlignment="Left" Height="23" Margin="374,360,0,0" VerticalAlignment="Top" Width="144"/>
         <WindowsFormsHost x:Name="hostResponsable" HorizontalAlignment="Left" Height="23" Margin="203,87,0,0" VerticalAlignment="Top" Width="520">
             <wf:TextBox x:Name="nuevo">
 

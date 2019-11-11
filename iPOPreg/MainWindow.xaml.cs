@@ -42,6 +42,8 @@ namespace iPOPreg
 
         private void Verificar_Login_Click(object sender, RoutedEventArgs e)
         {
+            //BDasistente.User User = new BDasistente.User();
+            
             loginAsist.AutoSetCadenaConexion(datos);
 
             MySqlConnection iniciar = new MySqlConnection(loginAsist.CadenaConexion());
