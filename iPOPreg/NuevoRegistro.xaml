@@ -40,7 +40,7 @@
 
             </wf:TextBox>
         </WindowsFormsHost>
-        <Label Content="Meta 50 equipos" HorizontalAlignment="Left" Height="37" Margin="49,10,0,0" VerticalAlignment="Top" Width="300" FontWeight="Bold" FontSize="20"/>
+        <Label x:Name="LogTittle_NuevoRegistro" Content="Meta 50 equipos" HorizontalAlignment="Left" Height="37" Margin="49,10,0,0" VerticalAlignment="Top" Width="674" FontWeight="Bold" FontSize="20"/>
         <TextBox x:Name="obs_RegistroNuevo" HorizontalAlignment="Left" Height="327" Margin="749,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189"/>
         <Label Content="Observaciones:" HorizontalAlignment="Left" Height="30" Margin="749,29,0,0" VerticalAlignment="Top" Width="89"/>
         <Label x:Name="LogEstado_NuevoRegistro" Content="" HorizontalAlignment="Left" Height="69" Margin="531,130,0,0" VerticalAlignment="Top" Width="158"/>

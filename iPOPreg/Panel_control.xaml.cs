@@ -48,7 +48,7 @@ namespace iPOPreg
         {
             NuevoRegistro nuevoRegistro = new NuevoRegistro();
             nuevoRegistro.Owner = this;
-            nuevoRegistro.ShowDialog();
+            nuevoRegistro.Show();
         }
 
         private void Panel_PControl_Loaded(object sender, RoutedEventArgs e)

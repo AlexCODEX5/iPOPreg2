@@ -5,6 +5,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -12,7 +14,7 @@ namespace iPOPreg
 {
     class BDasistente
     {
-        public class User
+        /*public class User
         {
             private string dni = "";
             private string nombre= "";
@@ -35,7 +37,8 @@ namespace iPOPreg
             {
                 ambiente = newambiente;
             }
-        }
+        }*/
+
         public string Encriptar(string _cadenaAencriptar)
         {
             string result = string.Empty;
@@ -178,56 +181,71 @@ namespace iPOPreg
         public void ConfigDefault(DataSet datos) //NewConfig
         {
             DataTable tabla = new DataTable("MySQL");
-            tabla.Columns.Add(new DataColumn("datasource", Type.GetType("System.String")));
-            tabla.Columns.Add(new DataColumn("port", Type.GetType("System.String")));
-            tabla.Columns.Add(new DataColumn("username", Type.GetType("System.String")));
-            tabla.Columns.Add(new DataColumn("password", Type.GetType("System.String")));
-            tabla.Columns.Add(new DataColumn("database", Type.GetType("System.String")));
-            datos.Tables.Add(tabla);
+                tabla.Columns.Add(new DataColumn("datasource", Type.GetType("System.String")));
+                tabla.Columns.Add(new DataColumn("port", Type.GetType("System.String")));
+                tabla.Columns.Add(new DataColumn("username", Type.GetType("System.String")));
+                tabla.Columns.Add(new DataColumn("password", Type.GetType("System.String")));
+                tabla.Columns.Add(new DataColumn("database", Type.GetType("System.String")));
+                datos.Tables.Add(tabla);
 
-            DataRow filaNueva = tabla.NewRow();
-            filaNueva["datasource"] = "127.0.0.1";
-            filaNueva["port"] = "3306";
-            filaNueva["username"] = "root";
-            filaNueva["password"] = "";
-            filaNueva["database"] = "bd_ipopreg_iiee";
-            tabla.Rows.Add(filaNueva);
+                DataRow filaNueva = tabla.NewRow();
+                filaNueva["datasource"] = "127.0.0.1";
+                filaNueva["port"] = "3306";
+                filaNueva["username"] = "root";
+                filaNueva["password"] = "";
+                filaNueva["database"] = "bd_ipopreg_iiee";
+                tabla.Rows.Add(filaNueva);
+
             datos.WriteXml("bd.conf.xml", XmlWriteMode.WriteSchema);
         }
 
-        public void AddResponsable()
+        public void AddResponsable(DataSet datos, string responsable)
         {
-
+            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
+            bool posible = true;
+            for (int x = 0; x < datos.Tables["Responsables"].Rows.Count; x++)
+            {
+                if (responsable == datos.Tables["Responsables"].Rows[x]["Autocompletado"].ToString())
+                {
+                    posible = false;
+                }
+            }
+            if (posible)
+            {
+                DataRow nueva = datos.Tables["Responsables"].NewRow();
+                nueva["Autocompletado"] = responsable;
+                datos.Tables["Responsables"].Rows.Add(nueva);
+                datos.WriteXml("bd.conf.xml", XmlWriteMode.WriteSchema);
+            }
         }
 
         public string Datasource(DataSet datos)
         {
-            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
             return datos.Tables["MySQL"].Rows[0]["datasource"].ToString();
         }
 
         public string Port(DataSet datos)
         {
-            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
             return datos.Tables["MySQL"].Rows[0]["port"].ToString();
         }
 
         public string Username(DataSet datos)
         {
-            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
             return datos.Tables["MySQL"].Rows[0]["username"].ToString();
         }
 
         public string Password(DataSet datos)
         {
-            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
             return DesEncriptar(datos.Tables["MySQL"].Rows[0]["password"].ToString());
         }
 
         public string Database(DataSet datos)
         {
-            datos.ReadXml("bd.conf.xml", XmlReadMode.Auto);
             return datos.Tables["MySQL"].Rows[0]["database"].ToString();
+        }
+
+        ~BDasistente(){
+
         }
     }
 }
