@@ -1,10 +1,16 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
+using Brushes = System.Windows.Media.Brushes;
+using Brush = System.Windows.Media.Brush;
+using System.Windows.Media;
+using ColorWPF = System.Windows.Media.Color;
+using Color = System.Drawing.Color;
 
 namespace iPOPreg
 {
@@ -36,7 +42,7 @@ namespace iPOPreg
             }
             if (buscar.State == ConnectionState.Open)
             {
-                MySqlDataReader reader = RegistroAsist.ListPrestados(buscar, CodIn_NuevoRegistro.Text);
+                MySqlDataReader reader = RegistroAsist.ListPrestados(buscar, CodIn_NuevoRegistro.Text,false);
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -67,10 +73,10 @@ namespace iPOPreg
                             EstadosItem_NuevoRegistro.SelectedIndex = 0;
                         }
                         obs_RegistroNuevo.Text = row[11];
-                        TimeSpan resultado = DateTime.Today - DevolucionDP_NuevoRegistro.SelectedDate.Value;
+                        TimeSpan resultado = DevolucionDP_NuevoRegistro.SelectedDate.Value - DateTime.Today;
                         if (resultado.Days > 0)
                         {
-                            LogEstado_NuevoRegistro.Content = $"Faltan {resultado.Days} dia(s)\n para ser devuelto";
+                            LogEstado_NuevoRegistro.Content = $"Faltan {resultado.Days.ToString()} dia(s)\n para ser devuelto";
                         }
                         else
                         {
@@ -99,7 +105,9 @@ namespace iPOPreg
 
         private void CatalogoSBN_NuevoRegistro_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CatalogoList_NuevoRegistro.Items.Clear();
+                CatalogoList_NuevoRegistro.Visibility = Visibility.Visible;
+                CatalogoList_NuevoRegistro.Items.Clear();
+
             //Aqui tambien se quito auto Set cadena de conexion
 
             MySqlConnection connection = new MySqlConnection(RegistroAsist.CadenaConexion());
@@ -140,18 +148,29 @@ namespace iPOPreg
                 DevolucionDP_NuevoRegistro.IsEnabled = true;
                 EstadosItem_NuevoRegistro.SelectedIndex = 1;
                 EstadosItem_NuevoRegistro.IsEnabled = false;
+                PrestamoPanel_NuevoRegistro.Visibility = Visibility.Visible;
+                EquipoPanel_NuevoRegistro.CornerRadius = new CornerRadius(20, 20, 0, 0);
             }
             else
             {
                 UsuarioPrestamo_NuevoRegistro.Enabled = false;
                 DevolucionDP_NuevoRegistro.IsEnabled = false;
                 EstadosItem_NuevoRegistro.IsEnabled = true;
+                PrestamoPanel_NuevoRegistro.Visibility = Visibility.Hidden;
+                EquipoPanel_NuevoRegistro.CornerRadius = new CornerRadius(20,20,20,20);
             }
         }
 
         private void Panel_NuevoRegistro_Loaded(object sender, RoutedEventArgs e)
         {
+            /*CatalogoSBN_NuevoRegistro.Text = "Escriba para recibir sugerencias";
+
+            obs_RegistroNuevo.Text = "Si hay algo importante que saber del producto escribir aqui";*/
             RegistroAsist.AutoSetCadenaConexion(datos);
+            CatalogoSBN_NuevoRegistro.Text = "Escriba para recibir sugerencias";
+            CatalogoList_NuevoRegistro.Visibility = Visibility.Hidden;
+            CatalogoSBN_NuevoRegistro.Foreground = Brushes.Gray;
+
             EstadosItem_NuevoRegistro.Items.Add("Entrada");
             EstadosItem_NuevoRegistro.Items.Add("Salida");
             CodIn_NuevoRegistro.Focus();
@@ -167,6 +186,7 @@ namespace iPOPreg
             nuevo.AutoCompleteCustomSource = GetSource();
             nuevo.AutoCompleteMode = AutoCompleteMode.Suggest;
             nuevo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            nuevo.BackColor = Color.FromArgb(255, 255, 255);
             hostResponsable.Child = nuevo;
 
             CodIn_NuevoRegistro.Height = 23;
@@ -174,6 +194,7 @@ namespace iPOPreg
             CodIn_NuevoRegistro.AutoCompleteCustomSource = codinvSource;
             CodIn_NuevoRegistro.AutoCompleteMode = AutoCompleteMode.Suggest;
             CodIn_NuevoRegistro.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            CodIn_NuevoRegistro.BackColor = Color.FromArgb(255,255,255);
             hostCodin.Child = CodIn_NuevoRegistro;
         }
 
@@ -316,6 +337,58 @@ namespace iPOPreg
             if (CatalogoList_NuevoRegistro.SelectedItem != null)
             {
                 CatalogoSBN_NuevoRegistro.Text = CatalogoList_NuevoRegistro.SelectedItem.ToString();
+            }
+        }
+
+        private void CodIn_NuevoRegistro_GotFocus(object sender, EventArgs e)
+        {
+            Brush Azulprofundo = new SolidColorBrush(ColorWPF.FromArgb(255,52, 76, 230));
+            LB1Codin.Foreground = Brushes.White;
+            LB1Codin.Background = Azulprofundo;// FF344CE6
+        }
+
+        private void CodIn_NuevoRegistro_LostFocus(object sender, EventArgs e)
+        {
+            Brush ModoNormal = new SolidColorBrush(ColorWPF.FromArgb(255, 127, 144, 255));
+            LB1Codin.Foreground = Brushes.Black;
+            LB1Codin.Background = ModoNormal;//FF7F90FF
+        }
+
+        private void obs_RegistroNuevo_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (obs_RegistroNuevo.Text == "Si hay algo importante que saber del producto escribir aqui")
+            {
+                obs_RegistroNuevo.Text = "";
+                obs_RegistroNuevo.Foreground = Brushes.Black;
+            }
+        }
+
+        private void obs_RegistroNuevo_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (obs_RegistroNuevo.Text == "")
+            {
+                obs_RegistroNuevo.Text = "Si hay algo importante que saber del producto escribir aqui";
+                obs_RegistroNuevo.Foreground = Brushes.Gray;
+            }
+        }
+
+        private void CatalogoSBN_NuevoRegistro_LostFocus(object sender, RoutedEventArgs e)
+        {
+            
+            if (CatalogoSBN_NuevoRegistro.Text == "")
+            {
+                CatalogoSBN_NuevoRegistro.Text = "Escriba para recibir sugerencias";
+                CatalogoSBN_NuevoRegistro.Foreground = Brushes.Gray;
+            }
+            CatalogoList_NuevoRegistro.Visibility = Visibility.Hidden;
+        }
+
+        private void CatalogoSBN_NuevoRegistro_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (CatalogoSBN_NuevoRegistro.Text == "Escriba para recibir sugerencias")
+            {
+                CatalogoSBN_NuevoRegistro.Text = "";
+                CatalogoSBN_NuevoRegistro.Foreground = Brushes.Black;
             }
         }
     }

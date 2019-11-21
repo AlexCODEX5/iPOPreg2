@@ -13,7 +13,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>iPOPreg</RootNamespace>
     <AssemblyName>iPOPreg</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -36,6 +36,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -88,14 +89,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="NewUser.xaml.cs">
+      <DependentUpon>NewUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NuevoRegistro.xaml.cs">
       <DependentUpon>NuevoRegistro.xaml</DependentUpon>
     </Compile>
     <Compile Include="Registrar_qr.xaml.cs">
       <DependentUpon>Registrar_qr.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Registro_equipo.xaml.cs">
-      <DependentUpon>Registro_equipo.xaml</DependentUpon>
     </Compile>
     <Compile Include="SharedData.cs" />
     <Page Include="MainWindow.xaml">
@@ -111,6 +112,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NuevoRegistro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -120,10 +125,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Registrar_qr.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Registro_equipo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

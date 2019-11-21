@@ -120,10 +120,35 @@ namespace iPOPreg
             return reader;
         }
 
-        public MySqlDataReader ListPrestados(MySqlConnection conexion, string codinvent)
+        public MySqlDataReader ListPrestados(MySqlConnection conexion, string codinvent, bool consulta)
         {
-            query = $"SELECT * FROM `equipos_prestados` WHERE `Nro_inventario` LIKE '%{codinvent}%' AND `Devuelto`='no'";
+            if (consulta)
+            {
+                query = $"SELECT * FROM `equipos_prestados` ORDER BY `fecha_salida` DESC";
+            }
+            else
+            {
+                query = $"SELECT * FROM `equipos_prestados` WHERE `Nro_inventario` LIKE '%{codinvent}%' AND `Devuelto`='no'";
+            }
             MySqlCommand comando = new MySqlCommand(query,conexion);
+            comando.CommandTimeout = 60;
+            MySqlDataReader reader = comando.ExecuteReader();
+            return reader;
+        }
+
+        public MySqlDataReader ListEntrada(MySqlConnection conexion)
+        {
+                query = $"SELECT * FROM `equipos_entrada` ORDER BY `fecha_entrada` DESC";
+            MySqlCommand comando = new MySqlCommand(query, conexion);
+            comando.CommandTimeout = 60;
+            MySqlDataReader reader = comando.ExecuteReader();
+            return reader;
+        }
+
+        public MySqlDataReader ListSalida(MySqlConnection conexion)
+        {
+            query = $"SELECT * FROM `equipos_salida` ORDER BY `fecha_salida` DESC";
+            MySqlCommand comando = new MySqlCommand(query, conexion);
             comando.CommandTimeout = 60;
             MySqlDataReader reader = comando.ExecuteReader();
             return reader;

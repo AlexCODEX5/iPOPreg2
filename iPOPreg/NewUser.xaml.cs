@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace iPOPreg
 {
     /// <summary>
-    /// Lógica de interacción para Registro_equipo.xaml
+    /// Lógica de interacción para NewUser.xaml
     /// </summary>
-    public partial class Registro_equipo : Window
+    public partial class NewUser : Window
     {
-        public Registro_equipo()
+        public NewUser()
         {
             InitializeComponent();
         }

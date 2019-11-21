@@ -29,7 +29,7 @@ namespace iPOPreg
         private void RegistroQR_Panel_Loaded(object sender, RoutedEventArgs e)
         {
             CodigoQR_RegistroQR.Focus();
-            CodigoQR_RegistroQR.Text = $"{SharedData.Codin} {SharedData.Marca} {SharedData.Modelo} {SharedData.Serie}";
+            CodigoQR_RegistroQR.Text = $"{SharedData.Codin} / {SharedData.Marca} / {SharedData.Modelo} / {SharedData.Serie}";
         }
 
         private void Escanear_RegistroQR_Click(object sender, RoutedEventArgs e)
