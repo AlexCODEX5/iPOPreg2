@@ -95,6 +95,8 @@ namespace iPOPreg
         {
             try
             {
+                Guardar_RegistrosQR.IsEnabled = false;
+                host.Child = null;
                 Process Personalizar;
                 Personalizar = Process.Start(@"Appnee_Generator\BarcodeGenerator.exe");
                 do
