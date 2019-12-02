@@ -441,11 +441,17 @@ namespace iPOPreg
             panelCon.Close();
             MySqlConnection.ClearPool(panelCon);
         }
+
+        private void BajaItem_Panel_Click(object sender, RoutedEventArgs e)
+        {
+            Baja_equipos bajaEquipos = new Baja_equipos();
+            bajaEquipos.Show();
+            bajaEquipos.Owner = this;
+        }
     }
     public class SelectItem
     {
         public string Personal { get; set; }
-
         public string NroInventario { get; set; }
         public string Descripcion { get; set; }
         public string Marca { get;  set; }

@@ -6,7 +6,7 @@
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:local="clr-namespace:iPOPreg"
         mc:Ignorable="d"
-        Title="Registros Código QR" Height="474.132" Width="590.277" ResizeMode="NoResize" >
+        Title="Registros Código QR" Height="474.132" Width="1125.777" ResizeMode="NoResize" >
     <Grid x:Name="RegistroQR_Panel" Loaded="RegistroQR_Panel_Loaded">
         <Button x:Name="Escanear_RegistroQR" Content="Escanear" HorizontalAlignment="Left" Height="20" Margin="415,91,0,0" VerticalAlignment="Top" Width="128" IsDefault="True" Click="Escanear_RegistroQR_Click"/>
         <TextBox x:Name="CodigoQR_RegistroQR" HorizontalAlignment="Left" Height="26" Margin="102,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="441" VerticalContentAlignment="Center"/>
@@ -25,6 +25,10 @@
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="73,399,0,0" TextWrapping="Wrap" Text="Bajo Licencia Creative Commons" VerticalAlignment="Top" Width="189"/>
         <TextBlock x:Name="Licencia_RegistroQR" HorizontalAlignment="Left" Height="17" Margin="267,399,0,0" TextWrapping="Wrap" Text="https://creativecommons.org/licenses/by-nc-sa/4.0/" VerticalAlignment="Top" Width="298" Foreground="#FF2040D1" MouseLeftButtonDown="Licencia_RegistroQR_MouseLeftButtonDown" Cursor="Hand"/>
         <TextBlock HorizontalAlignment="Left" Height="17" Margin="408,356,0,0" TextWrapping="Wrap" Text="*Click para copiar los enlaces" VerticalAlignment="Top" Width="157" Foreground="#FFE22E2E"/>
+        <Grid HorizontalAlignment="Left" Height="425" Margin="570,10,0,0" VerticalAlignment="Top" Width="540" Background="#4CECECEC">
+            <WindowsFormsHost HorizontalAlignment="Left" Height="166" Margin="46,34,0,0" VerticalAlignment="Top" Width="166"/>
+            <Label Content="FICHA DE SALIDA" HorizontalAlignment="Left" Height="32" Margin="62,244,0,0" VerticalAlignment="Top" Width="214"/>
+        </Grid>
 
     </Grid>
 </Window>

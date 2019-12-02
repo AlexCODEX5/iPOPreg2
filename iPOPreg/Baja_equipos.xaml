@@ -1,0 +1,47 @@
+﻿<Window x:Class="iPOPreg.Baja_equipos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:local="clr-namespace:iPOPreg"
+        mc:Ignorable="d"
+        Title="Baja de equipos" AllowsTransparency="true"  Height="420.5" Width="731" Background="{x:Null}" WindowStyle="None">
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="31*"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="364" Margin="15,10,0,0" VerticalAlignment="Top" Width="700" Background="#D8C54002" CornerRadius="30" Grid.RowSpan="2">
+            <Border x:Name="Header_BajaEquipos" BorderThickness="1" CornerRadius="30,30,0,0"  HorizontalAlignment="Left" Height="38" Margin="-1,-1,-1,0" VerticalAlignment="Top" Width="700" Background="#FFAA0303" MouseLeftButtonDown="Header_BajaEquipos_MouseLeftButtonDown">
+                <Button x:Name="Cerrar_BajaEquipos" Content="X" HorizontalAlignment="Left" Height="23" Margin="622,9,0,0" VerticalAlignment="Top" Width="27" Background="#7FFF9B9B" Foreground="White" Click="Cerrar_BajaEquipos_Click"/>
+            </Border>
+        </Border>
+
+        <Label Content="Código de inventario (*):" HorizontalAlignment="Left" Margin="51,15,0,0" VerticalAlignment="Top" Grid.Row="1" Foreground="White" FontWeight="Bold"/>
+        <WindowsFormsHost x:Name="HostCodin_BajaEquipos" HorizontalAlignment="Left" Height="26" Margin="217,15,0,0" VerticalAlignment="Top" Width="184" Grid.Row="1">
+            <wf:TextBox x:Name="CodIn_BajaEquipos">
+                
+            </wf:TextBox>
+        </WindowsFormsHost>
+        <TextBox x:Name="Marca" HorizontalAlignment="Left" Height="23" Margin="217,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Grid.Row="1"/>
+        <Label Content="Marca:" HorizontalAlignment="Left" Margin="51,57,0,0" VerticalAlignment="Top" Grid.Row="1" Foreground="White" FontWeight="Bold"/>
+        <TextBox x:Name="Modelo" HorizontalAlignment="Left" Height="23" Margin="217,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Grid.Row="1"/>
+        <Label Content="Modelo:" HorizontalAlignment="Left" Margin="51,88,0,0" VerticalAlignment="Top" Grid.Row="1" Foreground="White" FontWeight="Bold"/>
+        <TextBox x:Name="NumeroSerie" HorizontalAlignment="Left" Height="23" Margin="217,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Grid.Row="1"/>
+        <Label Content="Número de Serie:" HorizontalAlignment="Left" Margin="51,119,0,0" VerticalAlignment="Top" Grid.Row="1" Foreground="White" FontWeight="Bold"/>
+        <Label Content="No se le volverá a dar uso &#xD;&#xA;a este equipo" HorizontalAlignment="Left" Height="84" Margin="474,229,0,0" VerticalAlignment="Top" Width="209" Grid.Row="1"/>
+        <Image Margin="474,15,0,0" Source="Image1.png" Stretch="Fill" HorizontalAlignment="Left" Width="209" Height="209" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="Responsable" HorizontalAlignment="Left" Height="23" Margin="217,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Grid.Row="1"/>
+        <Label Content="Responsable (*):" HorizontalAlignment="Left" Margin="51,150,0,0" VerticalAlignment="Top" Grid.Row="1" Foreground="White" FontWeight="Bold"/>
+        <Button x:Name="Aceptar_BajaEquipos" Content="Aceptar" HorizontalAlignment="Left" Margin="302,250,0,0" VerticalAlignment="Top" Width="99" Grid.Row="1"/>
+        <Label x:Name="Titulo_Login" Content="Baja de Equipos" HorizontalAlignment="Left" Height="36" Margin="62,12,0,0" VerticalAlignment="Top" Width="440" Foreground="White" FontFamily="Microsoft YaHei UI" FontSize="20" MouseLeftButtonDown="Header_BajaEquipos_MouseLeftButtonDown"/>
+        <Label Content="DESCRIPCIÓN (*):" HorizontalAlignment="Left" Margin="51,181,0,0" VerticalAlignment="Top" Grid.Row="1" Foreground="White" FontWeight="Bold"/>
+        <WindowsFormsHost x:Name="HostDescripcion_BajaEquipos" HorizontalAlignment="Left" Height="64" Margin="217,181,0,0" Grid.Row="1" VerticalAlignment="Top" Width="184">
+            <wf:TextBox x:Name="Descripcion_BajaEquipos">
+                
+            </wf:TextBox>
+        </WindowsFormsHost>
+
+    </Grid>
+</Window>
