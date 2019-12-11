@@ -138,7 +138,7 @@ namespace iPOPreg
 
         public MySqlDataReader ListEntrada(MySqlConnection conexion)
         {
-                query = $"SELECT * FROM `equipos_entrada` ORDER BY `fecha_entrada` DESC";
+            query = $"SELECT * FROM `equipos_entrada` ORDER BY `fecha_entrada` DESC";
             MySqlCommand comando = new MySqlCommand(query, conexion);
             comando.CommandTimeout = 60;
             MySqlDataReader reader = comando.ExecuteReader();
@@ -196,6 +196,15 @@ namespace iPOPreg
         public MySqlDataReader In_Entrada(MySqlConnection conexion, string nroinvent, string descripcion, string marca, string modelo, string nroserie, DateTime fechasalida, string hora, string personal, string observaciones)
         {
             query = $"INSERT INTO `equipos_entrada`(`Nro_inventario`, `descripcion`, `marca`, `modelo`, `nro_serie`, `fecha_entrada`, `hora`, `personal_atencion`, `observaciones`) VALUES ('{nroinvent}','{descripcion}','{marca}','{modelo}','{nroserie}','{fechasalida.ToString("yyyyMMdd")}','{hora}','{personal}','{observaciones}')";
+            MySqlCommand comando = new MySqlCommand(query, conexion);
+            comando.CommandTimeout = 60;
+            MySqlDataReader reader = comando.ExecuteReader();
+            return reader;
+        }
+
+        public MySqlDataReader In_Baja(MySqlConnection conexion, string nroinvent, string descripcion, string marca, string modelo, string nroserie, string personal)
+        {
+            query = $"INSERT INTO `equipos_baja`(`Nro_inventario`, `Marca`, `Modelo`, `nro_serie`, `personal_atencion`, `descripcion`) VALUES ('{nroinvent}','{marca}','{modelo}','{nroserie}','{personal}','{descripcion}')";
             MySqlCommand comando = new MySqlCommand(query, conexion);
             comando.CommandTimeout = 60;
             MySqlDataReader reader = comando.ExecuteReader();

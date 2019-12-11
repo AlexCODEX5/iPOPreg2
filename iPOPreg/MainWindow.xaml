@@ -33,7 +33,7 @@
             <Border BorderThickness="1" Height="62" VerticalAlignment="Top" Background="#FF13243E" CornerRadius="30,30,0,0" MouseLeftButtonDown="BordeTit_MouseLeftButtonDown">
                 <Button x:Name="Min_Login" Content="___" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="30" Background="#FF3A9CFF" Click="Min_Login_Click" Margin="652,9,0,0"/>
             </Border>
-            <Label x:Name="Titulo_Login" Content="Control de Usuario" HorizontalAlignment="Left" Height="42" Margin="66,10,0,0" VerticalAlignment="Top" Width="440" Foreground="White" FontFamily="Microsoft YaHei UI" FontSize="20" MouseLeftButtonDown="BordeTit_MouseLeftButtonDown"/>
+            <Label x:Name="Titulo_Login" Content="Control de Usuario (DEMO)" HorizontalAlignment="Left" Height="42" Margin="66,10,0,0" VerticalAlignment="Top" Width="440" Foreground="White" FontFamily="Microsoft YaHei UI" FontSize="20" MouseLeftButtonDown="BordeTit_MouseLeftButtonDown"/>
             <Label x:Name="titulo" Content="[ESC] para salir" HorizontalAlignment="Left" Margin="481,10,0,0" VerticalAlignment="Top" Width="130" Foreground="#FFC9C9C9" MouseLeftButtonDown="BordeTit_MouseLeftButtonDown"/>
 
         </Grid>

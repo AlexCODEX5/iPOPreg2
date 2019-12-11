@@ -110,6 +110,7 @@ namespace iPOPreg
 
         private void RefreshList_Login_Click(object sender, RoutedEventArgs e)
         {
+            UserList_Login.Items.Clear();
             string datasource = loginAsist.Datasource(datos);
             string port = loginAsist.Port(datos);
             string username = loginAsist.Username(datos);

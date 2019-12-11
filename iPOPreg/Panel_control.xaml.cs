@@ -448,6 +448,11 @@ namespace iPOPreg
             bajaEquipos.Show();
             bajaEquipos.Owner = this;
         }
+
+        private void Baja_Panel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
     public class SelectItem
     {

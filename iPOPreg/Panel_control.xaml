@@ -33,7 +33,7 @@
 
             </Button>
             <Button x:Name="BajaItem_Panel" Content="Baja de&#xD;&#xA;Equipos" HorizontalAlignment="Left" Height="48" Margin="910,31,0,0" VerticalAlignment="Top" Width="116" FontFamily="Nirmala UI" FontSize="16" BorderBrush="#FF6092C5" Background="#FFFF82B5" Click="BajaItem_Panel_Click"/>
-            <Button x:Name="Baja_Panel" Content="Equipos &#xA;de Baja" HorizontalAlignment="Left" Height="48" Margin="684,32,0,0" VerticalAlignment="Top" Width="108" FontFamily="Tahoma" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA" Click="Prestado_Panel_Click"/>
+            <Button x:Name="Baja_Panel" Content="Equipos &#xA;de Baja" HorizontalAlignment="Left" Height="48" Margin="684,32,0,0" VerticalAlignment="Top" Width="108" FontFamily="Tahoma" FontSize="16" BorderBrush="#FF6092C5" Background="#FFCAE3EA" Click="Baja_Panel_Click"/>
         </Grid>
     </Border>
 
